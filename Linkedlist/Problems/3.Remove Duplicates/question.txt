@@ -1,0 +1,11 @@
+Remove Duplicates from a Singly Linked List
+Given a singly linked list, write a function that removes all the duplicates. use this linked list .
+
+Original Linked List - "1 -> 2 -> 4-> 3 -> 4->2"
+
+Result Linked List - "1 -> 2 -> 4 -> 3
+
+
+There is a other form of the same quetion that is what if the given linked list is sorted 
+
+that means always the duplicates will be adjacent to each other so we dont need the set for comparision

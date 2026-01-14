@@ -38,6 +38,19 @@ class CSLinkedList:     # this circular linked list with one element
             result += '->'
         return result
     
+    def prepend (self,value):
+        new_node = Node(value)
+        if self.length == 0:  # here you can also use self.head is None
+            self.head, self.tail = new_node , new_node
+            new_node.next = new_node
+        else:
+            new_node.next = self.head
+            self.tail.next = new_node
+            self.head = new_node
+        self.length+=1
+
+
+    
 csll = CSLinkedList()
 csll.append(10)
 csll.append(20)

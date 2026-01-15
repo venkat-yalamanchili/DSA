@@ -66,7 +66,7 @@ class LinkedList:
     
     def search(self,target):
         current = self.head
-        index = 0 ## if we wanr to return the index we will just initiate index = 0 and increment it every iteration
+        index = 0 ## if we want to return the index we will just initiate index = 0 and increment it every iteration
         while current:
             if current.value == target:
                 return True # here we will return index

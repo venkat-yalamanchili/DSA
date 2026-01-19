@@ -136,6 +136,21 @@ class CSLinkedList:     # this circular linked list with one element
         self.length -= 1
         return popped_node
 
+    def remove (self,index):
+        if index < 0 or index >= self.length:
+            return None
+        elif index == 0:
+            return self.pop_first()
+        elif index == self.length-1:
+            return self.pop()
+        else:
+            prev_node = self.get(index-1)
+            popped_node = prev_node.next
+            prev_node.next = popped_node.next
+            popped_node.next = None
+            self.length -= 1
+            return popped_node
+
 csll = CSLinkedList()
 csll.append(10)
 csll.append(20)

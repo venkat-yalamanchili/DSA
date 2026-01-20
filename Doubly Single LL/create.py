@@ -56,14 +56,39 @@ class DoubleLinkedList:
         while curr:
             print(curr.value)
             curr = curr.prev
+    
+    def search(self,target):
+        curr = self.head
+        index = 0
+        while curr:
+            if curr.value == target:
+                return index
+            curr = curr.next
+            index += 1
+        return False
 
+    def get(self,index):
+        if index < 0 or index >= self.length:
+            return None
+        if index < self.length // 2:
+            curr = self.head
+            for _ in range (index):
+                curr = curr.next
+        else:
+            curr = self.tail
+            for _ in range (self.length-1, index, -1):
+                curr = curr.prev
+        return curr
 
 new = DoubleLinkedList()
 new.append(10)
 new.append(20)
 new.append(30)
-print(new.tail)
-new.prepend(60)
-print(new)
-new.traverse()
-new.reverse_traverse()
+new.append(40)
+# print(new.tail)
+# new.prepend(60)
+# print(new)
+# new.traverse()
+# new.reverse_traverse()
+print(new.search(20))
+print(new.get(2))

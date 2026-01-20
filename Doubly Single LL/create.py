@@ -79,16 +79,79 @@ class DoubleLinkedList:
             for _ in range (self.length-1, index, -1):
                 curr = curr.prev
         return curr
+    
+    def set(self,index,value):
+        node = self.get(index)
+        if node:
+            node.value = value
+            return True
+        return False
+    
+    def insert(self,index,value):
+        new_node = Node(value)
+        if index < 0 or index >self.length:
+            return IndexError("Index out of range")
+        if index == 0:
+            if not self.head:
+                self.head = self.tail = new_node
+            else:
+                new_node.next = self.head
+                self.head.prev = new_node
+                self.head = new_node
+        elif index == self.length:
+            self.tail.next = new_node
+            new_node.prev = self.tail
+            self.tail = new_node
+        else:
+            temp = self.get(index-1)
+            new_node.next = temp.next
+            new_node.prev = temp
+            temp.next.prev = new_node
+            temp.next = new_node
+        self.length += 1
+
+    def pop_first(self):
+        if not self.head:
+            return None
+        popped_node = self.head
+        if self.length == 1:
+            self.head = None
+            self.head = None
+        else:
+            self.head = self.head.next
+            self.head.prev = None
+            popped_node.next = None
+        self.length -= 1
+        return popped_node
+    
+    def pop(self):
+        if not self.head:
+            return None
+        popped_node = self.tail
+        if self.length == 1:
+            self.head = None
+            self.head = None
+        else:
+            self.tail = self.tail.prev
+            self.tail.next = None
+            popped_node.prev = None
+        self.length -= 1
+        return popped_node
+
+    def remove(self, index):
+        pass 
+
 
 new = DoubleLinkedList()
 new.append(10)
 new.append(20)
 new.append(30)
 new.append(40)
+new.insert(4,50)
 # print(new.tail)
 # new.prepend(60)
-# print(new)
+print(new)
 # new.traverse()
 # new.reverse_traverse()
-print(new.search(20))
-print(new.get(2))
+# print(new.search(20))
+# print(new.get(2))

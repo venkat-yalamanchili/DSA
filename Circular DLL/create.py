@@ -66,13 +66,116 @@ class CircularDLL:  # first we create empty then we write methods to insert
             temp = temp.prev
             if temp == self.tail: break
 
+    def search(self,target):
+        temp = self.head
+        while temp:
+            if temp.value == target:
+                return True
+            temp = temp.next
+            if temp == self.head:break
+        return False
+    
+    def get(self,index):
+        if index<0 or index >= self.length:
+            return None
+        if index < self.length // 2:
+            curr = self.head
+            for _ in range(index):
+                curr = curr.next
+        else:
+            curr = self.tail
+            for _ in range(self.length-1, index, -1):
+                curr = curr.prev
+        return curr
+    
+    def set(self,index,value):
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
+    
+    def insert(self,index,value):
+        if index<0 or index>self.length:
+            print("Index out of range")
+            return
+        if index == 0:
+            self.prepend(value)
+            return
+        if index == self.length:
+            self.append(value)
+            return
+        new_node = Node(value)
+        temp = self.get(index-1)
+        new_node.next = temp.next
+        new_node.prev = temp
+        temp.next.prev = new_node
+        temp.next = new_node
+        self.length += 1
+
+    def pop_first(self):
+        if self.length == 0:
+            return None
+        popped_node = self.head
+        if self.length == 1:
+            self.head,self.tail = None, None
+        else:
+            self.head = self.head.next
+            popped_node.next = None
+            popped_node.prev = None
+            self.tail.next = self.head
+            self.head.prev = self.tail
+        self.length -= 1
+        return popped_node
+    
+    def pop(self):
+        if self.length == 0:
+            return None
+        popped_node = self.tail
+        if self.length == 1:
+            self.head = self.tail = None
+        else:
+            self.tail = self.tail.prev
+            popped_node.next = None
+            popped_node.prev = None
+            self.tail.next = self.head
+            self.head.prev = self.tail
+        self.length -= 1
+        return popped_node
+    
+    def remove(self,index):
+        if index<0 or index>=self.length:
+            print("Index out of range")
+            return
+        if index == 0:
+            self.pop_first
+            return
+        if index == self.length-1:
+            self.pop()
+            return
+        popped_node = self.get(index)
+        popped_node.prev.next = popped_node.next
+        popped_node.next.prev = popped_node.prev
+        popped_node.next = None
+        popped_node.prev = None
+        self.length-=1
+        return popped_node
+    
+    def delete_all(self):
+        self.head = self.tail = None
+        self.length = 0
+            
+
 new = CircularDLL()
 new.append(10)
 new.append(20)
 new.append(30)
 new.prepend(40)
 print(new)
-new.traverse()
-new.reverse_traverse()
+new.set(2,90)
+print(new)
+# new.traverse()
+# new.reverse_traverse()
 # print(new.head)
 # print(new.tail)
+print(new.get(3))

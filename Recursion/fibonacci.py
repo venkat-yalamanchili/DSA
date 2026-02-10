@@ -6,7 +6,7 @@ def fibonacci(n):
     else:
         return fibonacci(n-1)+fibonacci(n-2)
 
-print(fibonacci(4))
+print(fibonacci(35))
 
 # Iterative approach
 def print_fibonacci(n):
@@ -18,4 +18,4 @@ def print_fibonacci(n):
     # print(a) if you only want that number insted of series
 
 # Example: Print the first 10 numbers
-print_fibonacci(4)
+print_fibonacci(36)

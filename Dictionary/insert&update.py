@@ -8,3 +8,6 @@ print(mydict)
 
 mydict["address"] = "Vijayawada" # Insert
 print(mydict)
+
+if "Vijayawada" in mydict:
+    print(True)

@@ -11,7 +11,6 @@ class LinkedList:
         self.head = None
         self.tail = None
 
-
 class Queue:
     def __init__(self):
         self.linkedList = LinkedList()

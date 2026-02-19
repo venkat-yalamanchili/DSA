@@ -1,4 +1,5 @@
 import QueueLinkedList as queue
+from collections import deque
 
 class TreeNode:
     def __init__(self, data):
@@ -66,13 +67,32 @@ def searchBT(rootNode,nodeValue):
             if (root.value.rightchild is not None):
                 customeQueue.enqueue(root.value.rightchild)
         return "Not Found"
+    
+def insertNode(rootNode, newNode):
+    if not rootNode:
+        rootNode = newNode
+    else:
+        queue = deque([rootNode])
+        while queue:
+            current = queue.popleft()
+            if current.leftchild:
+                queue.append(current.leftchild)
+            else:
+                current.leftchild = newNode
+                return "Sucess"
+            if current.rightchild:
+                queue.append(current.rightchild)
+            else:
+                current.rightchild = newNode
+                return "Sucess"
 
 
-
-# preorderTraversal(newBT)
+# postOrderTraversal(newBT)
 # print()
 # inorderTraversal(newBT)
 # print()
 # postOrderTraversal(newBT)
-levelOrderTraversal(newBT)
-print(searchBT(newBT, "Coke"))
+# levelOrderTraversal(newBT)
+# print(searchBT(newBT, "Coke"))
+newNode = TreeNode("Black")
+insertNode(newBT,newNode)

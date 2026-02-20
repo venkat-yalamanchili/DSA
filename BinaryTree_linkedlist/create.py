@@ -42,7 +42,7 @@ def levelOrderTraversal(rootNode):
     if not rootNode:
         return
     else:
-        customeQueue = queue.Queue()
+        customeQueue = queue.Queue()  # here we are using the queue data structure that we created using linkedlist
         customeQueue.enqueue(rootNode)
         while not(customeQueue.isEmpty()):
             root = customeQueue.dequeue()
@@ -72,8 +72,8 @@ def insertNode(rootNode, newNode):
     if not rootNode:
         rootNode = newNode
     else:
-        queue = deque([rootNode])
-        while queue:
+        queue = deque([rootNode])  # here we are creating the queue using deque from collections
+        while queue:               # just to get familiar with both ways
             current = queue.popleft()
             if current.leftchild:
                 queue.append(current.leftchild)
@@ -86,13 +86,77 @@ def insertNode(rootNode, newNode):
                 current.rightchild = newNode
                 return "Sucess"
 
+def getdeepestNode(rootNode):
+    if not rootNode:
+        rootNode 
+    else:
+        queue = deque([rootNode])
+        while queue:
+            current = queue.popleft()
+            if current.leftchild:
+                queue.append(current.leftchild)
+            if current.rightchild:
+                queue.append(current.rightchild)
+        return current
 
+def deletedeepestNode(rootNode, dNode):
+    if not rootNode:
+        return
+    else:
+        queue = deque([rootNode])
+        while queue:
+            current = queue.popleft()
+            if current is dNode:
+                current = None
+                return
+            if current.rightchild:
+                if current.rightchild is dNode:
+                    current.rightchild = None
+                    return
+                else:
+                    queue.append(current.rightchild)
+            if current.leftchild:
+                if current.leftchild is dNode:
+                    current.leftchild = None
+                    return
+                else:
+                    queue.append(current.leftchild)
+
+def deleteNodeBT(rootNode,node):
+    if not rootNode:
+        return "The BT does not exist"
+    else:
+        queue = deque([rootNode])
+        while queue:
+            current = queue.popleft()
+            if current.data == node:
+                dNode = getdeepestNode(rootNode)
+                current.data = dNode.data  # to delete a binary node we first copy the deepestnode value then we 
+                deletedeepestNode(rootNode, dNode)   # delete the deepest node
+                return "The node has been successfully deleted"
+            if current.leftchild:
+                queue.append(current.leftchild)
+            if current.rightchild:
+                queue.append(current.rightchild)
+        return "Failed to delete"
+def deleteBT(rootNode):
+    rootNode.data = None
+    rootNode.leftchild = None
+    rootNode.rightchild = None
+    return
 # postOrderTraversal(newBT)
 # print()
 # inorderTraversal(newBT)
 # print()
 # postOrderTraversal(newBT)
-# levelOrderTraversal(newBT)
+levelOrderTraversal(newBT)
 # print(searchBT(newBT, "Coke"))
-newNode = TreeNode("Black")
-insertNode(newBT,newNode)
+# newNode = TreeNode("Black")
+# insertNode(newBT,newNode)
+# print(getdeepestNode(newBT).data) #because this returns the node to print out the value we need .data
+# newNode = getdeepestNode(newBT)
+# deletedeepestNode(newBT,newNode)
+# levelOrderTraversal(newBT)
+
+deleteNodeBT(newBT,'Hot')
+levelOrderTraversal(newBT)

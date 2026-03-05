@@ -21,7 +21,7 @@ To run the implementations locally, ensure you have the necessary compiler or ru
 ### Installation
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/venkat-yalamanchili/DSA.git](https://github.com/venkat-yalamanchili/DSA.git)
+   git clone https://github.com/venkat-yalamanchili/DSA.git
 2. **Navigate to a specific topic:**
    ```bash
    cd DSA/Data-Structures/LinkedList
